@@ -43,9 +43,6 @@ services:
       CACHE_STORE: file
       SESSION_DRIVER: file
       QUEUE_CONNECTION: sync
-    volumes:
-      - .:/var/www/html
-      - vendor_cache:/var/www/html/vendor
     networks:
       - esport_network
     command: >
