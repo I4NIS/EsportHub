@@ -1,0 +1,78 @@
+services:
+
+  db:
+    image: postgres:15-alpine
+    container_name: esport_db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: esport_hub
+      POSTGRES_USER: laravel
+      POSTGRES_PASSWORD: laravel
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U laravel -d esport_hub"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - esport_network
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: esport_app
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      APP_NAME: EsportHub
+      APP_ENV: local
+      APP_DEBUG: "true"
+      APP_URL: http://localhost
+      DB_CONNECTION: pgsql
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_DATABASE: esport_hub
+      DB_USERNAME: laravel
+      DB_PASSWORD: laravel
+      CACHE_STORE: file
+      SESSION_DRIVER: file
+      QUEUE_CONNECTION: sync
+    volumes:
+      - .:/var/www/html
+      - vendor_cache:/var/www/html/vendor
+    networks:
+      - esport_network
+    command: >
+      sh -c "composer install --no-interaction &&
+             php artisan key:generate --no-interaction --force &&
+             php artisan migrate --no-interaction --force &&
+             php artisan db:seed --no-interaction --force &&
+             php-fpm"
+
+  nginx:
+    image: nginx:1.25-alpine
+    container_name: esport_nginx
+    restart: unless-stopped
+    depends_on:
+      - app
+    ports:
+      - "80:80"
+    volumes:
+      - .:/var/www/html
+      - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+    networks:
+      - esport_network
+
+volumes:
+  db_data:
+  vendor_cache:
+
+networks:
+  esport_network:
+    driver: bridge
