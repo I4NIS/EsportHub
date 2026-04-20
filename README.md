@@ -169,6 +169,40 @@ Le fichier `doc/EsportHub.postman_collection.json` contient tous les endpoints p
 
 ---
 
+## Documentation
+
+### Référence API
+
+| Quoi | Où | Détail |
+|------|----|--------|
+| Liste complète des endpoints | Section **Endpoints** ci-dessous | Méthode, route, niveau d'auth requis, filtres disponibles |
+| Format standard des réponses | Section **Format des réponses** ci-dessous | Enveloppe `success / message / data`, format des erreurs de validation |
+| Authentification & rôles | Section **Authentification et rôles** ci-dessous | Double token (access + refresh), rôles `user` / `admin`, durées de vie |
+| Rate limiting | Section **Rate Limiting** ci-dessous | 60 req/min public, 120 req/min authentifié |
+| RGPD | Section **RGPD** ci-dessous | Export JSON des données personnelles, suppression en cascade |
+
+### Tester l'API
+
+| Quoi | Où | Détail |
+|------|----|--------|
+| Collection Postman | `doc/EsportHub.postman_collection.json` | Tous les endpoints préconfigurés, séparation user / admin |
+| Variables Postman | Section **Collection Postman > Variables** ci-dessous | Tokens sauvegardés automatiquement, IDs récupérés après chaque création |
+| Comptes de test | Section **Comptes de test** ci-dessous | Utilisateur et admin créés par le Seeder avec mots de passe connus |
+| Suite de tests automatisés | `tests/Feature/` | 73 tests, 190 assertions — couvre l'intégralité des endpoints |
+
+### Code source
+
+| Quoi | Où | Détail |
+|------|----|--------|
+| Logique métier des endpoints | `app/Http/Controllers/` | Un controller par ressource (`GameController`, `TeamController`, etc.) |
+| Règles de validation | `app/Http/Requests/` | FormRequests dédiées par action (création, modification) |
+| Modèles & relations Eloquent | `app/Models/` | Définition des relations entre entités (hasMany, belongsTo, etc.) |
+| Routes API | `routes/api.php` | Déclaration de toutes les routes avec middlewares |
+| Migrations (schéma BDD) | `database/migrations/` | Historique de création et évolution des tables |
+| Données de démonstration | `database/seeders/` et `database/factories/` | Jeu de données réaliste Valorant & CS2 inséré au démarrage |
+
+---
+
 ## Comptes de test (créés par le Seeder)
 
 | Rôle | Email | Mot de passe |
