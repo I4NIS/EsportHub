@@ -342,3 +342,5 @@ Ce projet a été développé avec l'assistance de **Claude (Anthropic)** via Cl
 | **Factories** | Les 8 factories (`GameFactory`, `TeamFactory`, `PlayerFactory`, `EventFactory`, `GameMatchFactory`, `MatchMapFactory`, `PlayerStatFactory`, `TransactionFactory`) |
 | **Tests Feature** | L'intégralité des fichiers de tests (`AuthTest`, `GamesTest`, `EventsTest`, `TeamsTest`, `MatchesTest`, `PlayersTest`, `UsersTest`) — 73 tests, 190 assertions |
 | **Collection Postman** | Le fichier `doc/EsportHub.postman_collection.json` (routes admin/user séparées, variables automatiques) |
+| **Environnement Docker** | La configuration complète Docker (`Dockerfile`, `docker-compose.yml`, `nginx.conf`, entrypoint) |
+| **Scripts BDD** | Les commandes d'export (`pg_dump`) et d'import (`psql`) de la base de données documentées dans ce README |
