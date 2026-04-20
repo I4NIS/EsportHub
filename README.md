@@ -342,9 +342,3 @@ Ce projet a été développé avec l'assistance de **Claude (Anthropic)** via Cl
 | **Factories** | Les 8 factories (`GameFactory`, `TeamFactory`, `PlayerFactory`, `EventFactory`, `GameMatchFactory`, `MatchMapFactory`, `PlayerStatFactory`, `TransactionFactory`) |
 | **Tests Feature** | L'intégralité des fichiers de tests (`AuthTest`, `GamesTest`, `EventsTest`, `TeamsTest`, `MatchesTest`, `PlayersTest`, `UsersTest`) — 73 tests, 190 assertions |
 | **Collection Postman** | Le fichier `doc/EsportHub.postman_collection.json` (routes admin/user séparées, variables automatiques) |
-# Esport
-# Esport
-# Esport
-# Esport
-# EsportHub
-# EsportHub
