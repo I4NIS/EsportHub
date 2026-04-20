@@ -140,6 +140,44 @@ Authorization: Bearer <access_token>
 
 ---
 
+## Collection Postman
+
+Le fichier `doc/EsportHub.postman_collection.json` contient tous les endpoints préconfigurés.
+
+### Import
+
+1. Ouvrir Postman → **Import** → sélectionner `doc/EsportHub.postman_collection.json`
+2. Lancer `POST Auth / Login` pour un compte utilisateur standard, ou `POST Auth / Login Admin` pour le compte admin
+3. Les variables `access_token` / `admin_token` sont automatiquement sauvegardées
+4. Les requêtes d'écriture admin utilisent `{{admin_token}}` automatiquement
+
+### Variables de collection
+
+| Variable | Renseignée par |
+|----------|---------------|
+| `base_url` | Prédéfinie (`http://localhost/api`) |
+| `access_token` | Auto-sauvegardée après register/login/refresh |
+| `refresh_token` | Auto-sauvegardée après register/login/refresh |
+| `admin_token` | Auto-sauvegardée après Login Admin |
+| `game_id` | Auto-sauvegardée après `POST /games` |
+| `event_id` | Auto-sauvegardée après `POST /events` |
+| `team_id` | Auto-sauvegardée après `POST /teams` |
+| `match_id` | Auto-sauvegardée après `POST /matches` |
+| `player_id` | Auto-sauvegardée après `POST /players` |
+| `map_id` | Auto-sauvegardée après `POST /matches/{id}/map-results` |
+| `user_id` | À renseigner manuellement (UUID d'un utilisateur) |
+
+---
+
+## Comptes de test (créés par le Seeder)
+
+| Rôle | Email | Mot de passe |
+|------|-------|-------------|
+| Utilisateur | `john@esporthub.test` | `Password1` |
+| Admin | `admin@esporthub.test` | `AdminPassword1` |
+
+---
+
 ## Endpoints
 
 > **Légende** : — Public · 🔒 Authentifié · 🔒 Admin — réservé au rôle admin
@@ -289,46 +327,6 @@ Les erreurs de validation retournent :
   }
 }
 ```
-
----
-
-## Collection Postman
-
-Le fichier `doc/EsportHub.postman_collection.json` contient tous les endpoints préconfigurés.
-
-### Import
-
-1. Ouvrir Postman → **Import** → sélectionner `doc/EsportHub.postman_collection.json`
-2. Lancer `POST Auth / Login` pour un compte utilisateur standard, ou `POST Auth / Login Admin` pour le compte admin
-3. Les variables `access_token` / `admin_token` sont automatiquement sauvegardées
-4. Les requêtes d'écriture admin utilisent `{{admin_token}}` automatiquement
-
-### Variables de collection
-
-| Variable | Renseignée par |
-|----------|---------------|
-| `base_url` | Prédéfinie (`http://localhost/api`) |
-| `access_token` | Auto-sauvegardée après register/login/refresh |
-| `refresh_token` | Auto-sauvegardée après register/login/refresh |
-| `admin_token` | Auto-sauvegardée après Login Admin |
-| `game_id` | Auto-sauvegardée après `POST /games` |
-| `event_id` | Auto-sauvegardée après `POST /events` |
-| `team_id` | Auto-sauvegardée après `POST /teams` |
-| `match_id` | Auto-sauvegardée après `POST /matches` |
-| `player_id` | Auto-sauvegardée après `POST /players` |
-| `map_id` | Auto-sauvegardée après `POST /matches/{id}/map-results` |
-| `user_id` | À renseigner manuellement (UUID d'un utilisateur) |
-
----
-
-## Comptes de test (créés par le Seeder)
-
-| Rôle | Email | Mot de passe |
-|------|-------|-------------|
-| Utilisateur | `john@esporthub.test` | `Password1` |
-| Admin | `admin@esporthub.test` | `AdminPassword1` |
-
----
 
 ## Déclaration d'utilisation de l'IA
 
